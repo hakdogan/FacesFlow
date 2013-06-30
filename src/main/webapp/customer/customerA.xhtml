@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'/>
+        <h:outputStylesheet library="css" name="css.css"/>
+        <title>First page in the Customer Flow</title>
+    </h:head>
+    <h:body>
+        
+        <h1>Second page in the Customer Flow</h1>
+        <p>Flow bean name: #{customerBean.name}</p>
+        <p>Has a flow: #{null != facesContext.application.flowHandler.currentFlow}.</p>
+                
+        <h:form prependId="false">
+            <h:panelGrid columns="3" cellpadding="2" cellspacing="2">
+                
+                <h:outputLabel value="First name: "/>
+                <h:outputLabel value="#{flowScope.firstName}"/>
+                <h:outputLabel/>
+                
+                <h:outputLabel value="Last name: "/>
+                <h:outputLabel value="#{flowScope.lastName}" />
+                <h:outputLabel/>
+                
+                <h:outputLabel for="adressLine1" value="Address Line 1: "/>
+                <h:inputText id="adressLine1" value="#{flowScope.adressLine1}" required="true" maxlength="255"/>
+                <h:message for="adressLine1"/>
+                
+                <h:outputLabel for="adressLine2" value="Address Line 2: "/>
+                <h:inputText id="adressLine2" value="#{flowScope.adressLine2}" maxlength="255"/>
+                <h:message for="adressLine2"/>
+                
+                <h:outputLabel for="city" value="City: "/>
+                <h:inputText id="city" value="#{flowScope.city}" required="true" maxlength="50"/>
+                <h:message for="city"/>
+                
+                <h:outputLabel for="state" value="State: "/>
+                <h:inputText id="state" value="#{flowScope.state}" />
+                <h:message for="state"/>
+                
+                <h:outputLabel for="postalCode" value="Zip/Postcode: "/>
+                <h:inputText id="postalCode" value="#{flowScope.postalCode}" required="true" maxlength="5">
+                    <f:convertNumber/>
+                </h:inputText>
+                <h:message for="postalCode"/>
+                
+                <h:outputLabel for="country" value="Country: "/>
+                <h:inputText id="country" value="#{flowScope.country}" required="true" maxlength="50"/>
+                <h:message for="country"/>
+                
+                <h:outputLabel/>
+                <h:panelGroup>
+                    <h:commandButton immediate="true" value="back" action="customer" />
+                    <h:commandButton value="next" action="customerB" />
+                    <h:commandButton immediate="true" action="returnFromCustomerFlow" value="Exit Flow"/>
+                </h:panelGroup>
+                
+            </h:panelGrid>
+
+        </h:form>
+    </h:body>
+</html>

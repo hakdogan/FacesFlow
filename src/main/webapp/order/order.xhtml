@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'/>
+        <h:outputStylesheet library="css" name="css.css"/>
+        <title>First page in the Order Flow</title>
+    </h:head>
+    <h:body>
+        
+        <h1>First page in the Order Flow</h1>
+        <p>Flow bean name: #{orderBean.name}</p>
+        <p>Has a flow: #{null != facesContext.application.flowHandler.currentFlow}.</p>
+        
+        <h:form prependId="false">
+            <h:panelGrid columns="3" cellpadding="2" cellspacing="2">
+                
+                <h:outputLabel for="product" value="Product: "/>
+                <h:inputText  id="product" value="#{flowScope.product}" required="true" maxlength="20"/>
+                <h:message for="product"/>
+                
+                <h:outputLabel for="price" value="Price: "/>
+                <h:inputText id="price" value="#{flowScope.price}" required="true">
+                    <f:convertNumber pattern="#,##0.00"/>
+                </h:inputText>
+                <h:message for="price"/>
+                
+                <h:outputLabel/>
+                <h:panelGroup>
+                    <h:commandButton value="next" action="orderA" />
+                    <h:commandButton immediate="true" action="returnFromOrderFlow" value="Exit Flow"/>
+                </h:panelGroup>
+                
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>

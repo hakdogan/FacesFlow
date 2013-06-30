@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'/>
+        <h:outputStylesheet library="css" name="css.css"/>
+        <title>First page in the Customer Flow</title>
+    </h:head>
+    <h:body>
+        
+        <h1>First page in the Customer Flow</h1>
+        <p>Flow bean name: #{customerBean.name}</p>
+        <p>Has a flow: #{null != facesContext.application.flowHandler.currentFlow}.</p>
+                
+        <h:form prependId="false">
+            <h:panelGrid columns="3" cellpadding="2" cellspacing="2">
+                
+                <h:outputLabel for="firstName" value="First name: "/>
+                <h:inputText  id="firstName" value="#{flowScope.firstName}" required="true" maxlength="20"/>
+                <h:message for="firstName"/>
+                
+                <h:outputLabel for="lastName" value="Last name: "/>
+                <h:inputText id="lastName" value="#{flowScope.lastName}" required="true" maxlength="20"/>
+                <h:message for="lastName"/>
+                
+                <h:outputLabel/>
+                <h:panelGroup>
+                    <h:commandButton value="next" action="customerA" />
+                    <h:commandButton immediate="true" action="returnFromCustomerFlow" value="Exit Flow"/>
+                </h:panelGroup>
+                
+            </h:panelGrid>
+
+
+        </h:form>
+    </h:body>
+</html>

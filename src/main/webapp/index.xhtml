@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    
+    <h:head>
+        <title>Welcome to kodcu.com Faces Flow tutorial.</title>
+        <link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'/>
+        <h:outputStylesheet library="css" name="css.css"/>
+    </h:head>
+    
+    <h:body>
+        
+        <h1>Welcome to kodcu.com Faces Flow tutorial</h1>
+        <h:form prependId="false">
+            <h:panelGrid>
+                
+                <p>Click Customer to register your customer information and enter the customer flow.</p>
+                <h:commandButton value="Customer" action="customer"/>
+                
+                <p>Click Order to register your order information and enter the order flow.</p>
+                <h:commandButton value="Order" action="order"/>
+                
+            </h:panelGrid>
+        </h:form>
+        
+    </h:body>
+    
+</html>

@@ -1,0 +1,15 @@
+body {
+    
+    font-family: 'Play', Tahoma, Geneva, sans-serif;
+    font-size: 12px;
+    cursor:default;
+    padding: 5px;
+}
+
+h1 {
+    color: activeborder;
+}
+
+.columnVerticalAlign {
+    vertical-align: top;
+}
