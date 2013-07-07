@@ -5,7 +5,6 @@
 package com.kodcu.flow;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import javax.faces.flow.FlowScoped;
 import javax.inject.Named;
 
