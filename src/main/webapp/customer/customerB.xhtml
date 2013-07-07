@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -16,39 +17,87 @@
         <p>Has a flow: #{null != facesContext.application.flowHandler.currentFlow}.</p>
                 
         <h:form prependId="false">
-            <h:panelGrid columns="2" cellpadding="2" cellspacing="2">
+            
+            <h:panelGrid columns="3" cellpadding="2" cellspacing="2" columnClasses="columnVerticalAlign,columnVerticalAlign,columnVerticalAlign">
                 
-                <h:outputLabel value="First name: "/>
-                <h:outputLabel value="#{flowScope.firstName}"/>
+                <h:panelGrid columns="2" cellpadding="2" cellspacing="2">
                 
-                <h:outputLabel value="Last name: "/>
-                <h:outputLabel value="#{flowScope.lastName}"/>
-                
-                <h:outputLabel value="Address Line 1: "/>
-                <h:outputLabel value="#{flowScope.adressLine1}"/>
-                
-                <h:outputLabel value="Address Line 2: "/>
-                <h:outputLabel value="#{flowScope.adressLine2}"/>
-                
-                <h:outputLabel value="City: "/>
-                <h:outputLabel value="#{flowScope.city}"/>
-                
-                <h:outputLabel value="State: "/>
-                <h:outputLabel value="#{flowScope.state}"/>
-                
-                <h:outputLabel value="Zip/Postcode: "/>
-                <h:outputLabel value="#{flowScope.postalCode}"/>
+                    <f:facet name="header">
+                        <h:outputText value="Customer Information"/>
+                    </f:facet>
+                    
+                    <h:outputLabel value="First name: "/>
+                    <h:outputLabel value="#{customerBean.firstName}"/>
 
-                <h:outputLabel value="Country: "/>
-                <h:outputLabel value="#{flowScope.country}"/>
+                    <h:outputLabel value="Last name: "/>
+                    <h:outputLabel value="#{customerBean.lastName}"/>
+
+                    <h:outputLabel value="Address Line 1: "/>
+                    <h:outputLabel value="#{customerBean.adressLine1}"/>
+
+                    <h:outputLabel value="Address Line 2: "/>
+                    <h:outputLabel value="#{customerBean.adressLine2}"/>
+
+                    <h:outputLabel value="City: "/>
+                    <h:outputLabel value="#{customerBean.city}"/>
+
+                    <h:outputLabel value="State: "/>
+                    <h:outputLabel value="#{customerBean.state}"/>
+
+                    <h:outputLabel value="Zip/Postcode: "/>
+                    <h:outputLabel value="#{customerBean.postalCode}"/>
+
+                    <h:outputLabel value="Country: "/>
+                    <h:outputLabel value="#{customerBean.country}"/>
+
+                </h:panelGrid>
                 
-                <h:outputLabel/>
-                <h:panelGroup>
-                    <h:commandButton value="back" action="customerA" />
-                    <h:commandButton action="returnFromCustomerFlow" value="Exit Flow"/>
-                </h:panelGroup>
+                <h:panelGrid columns="2" cellpadding="2" cellspacing="2" rendered="#{null != flowScope.productOrder?true:false}">
+                    <f:facet name="header">
+                        <h:outputText value="Order Information"/>
+                    </f:facet>
+                    
+                    <h:outputLabel value="Product:"/>
+                    <h:outputLabel value="#{flowScope.productOrder}"/>
+                    
+                    <h:outputLabel value="Price"/>
+                    <h:outputLabel value="#{flowScope.priceOrder}">
+                        <f:convertNumber pattern="#,##0.00"/>
+                    </h:outputLabel>
+                    
+                </h:panelGrid>
+                
+                <h:panelGrid columns="2" cellpadding="2" cellspacing="2" rendered="#{null != flowScope.adressLine1Order?true:false}">
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Billing Address"/>
+                    </f:facet>
+                    
+                    <h:outputLabel value="Address Line 1: "/>
+                    <h:outputLabel value="#{flowScope.adressLine1Order}"/>
+                    
+                    <h:outputLabel value="Address Line 2: "/>
+                    <h:outputLabel value="#{flowScope.adressLine2Order}"/>
+                    
+                    <h:outputLabel value="City: "/>
+                    <h:outputLabel value="#{flowScope.cityOrder}" />
+                    
+                    <h:outputLabel value="State: "/>
+                    <h:outputLabel value="#{flowScope.stateOrder}" />
+                    
+                    <h:outputLabel value="Zip/Postcode: "/>
+                    <h:outputLabel value="#{flowScope.postalCodeOrder}"/>
+
+                    <h:outputLabel value="Country: "/>
+                    <h:outputLabel value="#{flowScope.countryOrder}" />
+                    
+                </h:panelGrid>
                 
             </h:panelGrid>
+
+            <h:commandButton value="back" action="customerA" />
+            <h:commandButton action="callOrder" value="Call Order Flow"/>
+            <h:commandButton action="returnFromCustomerFlow" value="Exit Flow"/>
 
         </h:form>
     </h:body>

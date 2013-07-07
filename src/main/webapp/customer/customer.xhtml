@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -16,24 +17,43 @@
         <p>Has a flow: #{null != facesContext.application.flowHandler.currentFlow}.</p>
                 
         <h:form prependId="false">
-            <h:panelGrid columns="3" cellpadding="2" cellspacing="2">
+            
+            <h:panelGrid columns="2" cellpadding="2" cellspacing="2" columnClasses="columnVerticalAlign,columnVerticalAlign">
                 
-                <h:outputLabel for="firstName" value="First name: "/>
-                <h:inputText  id="firstName" value="#{flowScope.firstName}" required="true" maxlength="20"/>
-                <h:message for="firstName"/>
+                <h:panelGrid columns="2" cellpadding="2" cellspacing="2" rendered="#{null != flowScope.productOrder?true:false}">
+                    <f:facet name="header">
+                        <h:outputText value="Order Information"/>
+                    </f:facet>
+                    
+                    <h:outputLabel value="Product:"/>
+                    <h:outputLabel value="#{flowScope.productOrder}"/>
+                    
+                    <h:outputLabel value="Price"/>
+                    <h:outputLabel value="#{flowScope.priceOrder}">
+                        <f:convertNumber pattern="#,##0.00"/>
+                    </h:outputLabel>
+                    
+                </h:panelGrid>
                 
-                <h:outputLabel for="lastName" value="Last name: "/>
-                <h:inputText id="lastName" value="#{flowScope.lastName}" required="true" maxlength="20"/>
-                <h:message for="lastName"/>
+                <h:panelGrid columns="3" cellpadding="2" cellspacing="2">
                 
-                <h:outputLabel/>
-                <h:panelGroup>
-                    <h:commandButton value="next" action="customerA" />
-                    <h:commandButton immediate="true" action="returnFromCustomerFlow" value="Exit Flow"/>
-                </h:panelGroup>
-                
-            </h:panelGrid>
+                    <f:facet name="header">
+                        <h:outputText value="Customer Information"/>
+                    </f:facet>
+                    
+                    <h:outputLabel for="firstName" value="First name: "/>
+                    <h:inputText  id="firstName" value="#{customerBean.firstName}" required="true" maxlength="20"/>
+                    <h:message for="firstName"/>
 
+                    <h:outputLabel for="lastName" value="Last name: "/>
+                    <h:inputText id="lastName" value="#{customerBean.lastName}" required="true" maxlength="20"/>
+                    <h:message for="lastName"/>
+
+                </h:panelGrid>
+            </h:panelGrid>
+            
+            <h:commandButton value="next" action="customerA" />
+            <h:commandButton immediate="true" action="returnFromCustomerFlow" value="Exit Flow"/>
 
         </h:form>
     </h:body>

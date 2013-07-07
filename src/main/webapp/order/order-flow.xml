@@ -11,6 +11,77 @@
             <from-outcome>#{orderBean.returnValue}</from-outcome>
         </flow-return>
                     
+        <inbound-parameter>
+            <name>firstNameCustomer</name>
+            <value>#{flowScope.firstNameCustomer}</value>
+        </inbound-parameter>
+        <inbound-parameter>
+            <name>lastNameCustomer</name>
+            <value>#{flowScope.lastNameCustomer}</value>
+        </inbound-parameter>
+        <inbound-parameter>
+            <name>adressLine1Customer</name>
+            <value>#{flowScope.adressLine1Customer}</value>
+        </inbound-parameter>
+        <inbound-parameter>
+            <name>adressLine2Customer</name>
+            <value>#{flowScope.adressLine2Customer}</value>
+        </inbound-parameter>
+        <inbound-parameter>
+            <name>cityCustomer</name>
+            <value>#{flowScope.cityCustomer}</value>
+        </inbound-parameter>
+        <inbound-parameter>
+            <name>stateCustomer</name>
+            <value>#{flowScope.stateCustomer}</value>
+        </inbound-parameter>
+        <inbound-parameter>
+            <name>postalCodeCustomer</name>
+            <value>#{flowScope.postalCodeCustomer}</value>
+        </inbound-parameter>
+        <inbound-parameter>
+            <name>countryCustomer</name>
+            <value>#{flowScope.countryCustomer}</value>
+        </inbound-parameter>
+        
+        <flow-call id="callCustomer">
+            <flow-reference>
+                <flow-id>customer</flow-id>
+            </flow-reference>
+            <outbound-parameter>
+                <name>productOrder</name>
+                <value>#{orderBean.product}</value>
+            </outbound-parameter>
+            <outbound-parameter>
+                <name>priceOrder</name>
+                <value>#{orderBean.price}</value>
+            </outbound-parameter>
+            <outbound-parameter>
+                <name>adressLine1Order</name>
+                <value>#{orderBean.adressLine1}</value>
+            </outbound-parameter>
+            <outbound-parameter>
+                <name>adressLine2Order</name>
+                <value>#{orderBean.adressLine2}</value>
+            </outbound-parameter>
+            <outbound-parameter>
+                <name>cityOrder</name>
+                <value>#{orderBean.city}</value>
+            </outbound-parameter>
+            <outbound-parameter>
+                <name>stateOrder</name>
+                <value>#{orderBean.state}</value>
+            </outbound-parameter>
+            <outbound-parameter>
+                <name>postalCodeOrder</name>
+                <value>#{orderBean.postalCode}</value>
+            </outbound-parameter>
+            <outbound-parameter>
+                <name>countryOrder</name>
+                <value>#{orderBean.country}</value>
+            </outbound-parameter>
+        </flow-call>   
+        
     </flow-definition>
 
 </faces-config>

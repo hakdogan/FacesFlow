@@ -17,10 +17,8 @@
         <p>Has a flow: #{null != facesContext.application.flowHandler.currentFlow}.</p>
         
         <h:form prependId="false">
-            <h:panelGrid columns="2" cellpadding="2" cellspacing="2" 
-                         columnClasses="columnVerticalAlign,columnVerticalAlign">
+            <h:panelGrid columns="3" cellpadding="2" cellspacing="2" columnClasses="columnVerticalAlign,columnVerticalAlign">
                 
-                    
                 <h:panelGrid columns="2" cellpadding="2" cellspacing="2">
                     
                     <f:facet name="header">
@@ -28,10 +26,10 @@
                     </f:facet>
                     
                     <h:outputLabel value="Product: "/>
-                    <h:outputLabel value="#{flowScope.product}"/>
+                    <h:outputLabel value="#{orderBean.product}"/>
                     
                     <h:outputLabel value="Price: "/>
-                    <h:outputLabel value="#{flowScope.price}">
+                    <h:outputLabel value="#{orderBean.price}">
                         <f:convertNumber pattern="#,##0.00"/>
                     </h:outputLabel>
                     
@@ -43,27 +41,52 @@
                     </f:facet>
                     
                     <h:outputLabel value="Address Line 1: "/>
-                    <h:outputLabel value="#{flowScope.adressLine1}"/>
+                    <h:outputLabel value="#{orderBean.adressLine1}"/>
                     
                     <h:outputLabel value="Address Line 2: "/>
-                    <h:outputLabel value="#{flowScope.adressLine2}"/>
+                    <h:outputLabel value="#{orderBean.adressLine2}"/>
 
                     <h:outputLabel value="City: "/>
-                    <h:outputLabel value="#{flowScope.city}"/>
+                    <h:outputLabel value="#{orderBean.city}"/>
 
                     <h:outputLabel value="State: "/>
-                    <h:outputLabel value="#{flowScope.state}"/>
+                    <h:outputLabel value="#{orderBean.state}"/>
 
                     <h:outputLabel value="Zip/Postcode: "/>
-                    <h:outputLabel value="#{flowScope.postalCode}"/>
+                    <h:outputLabel value="#{orderBean.postalCode}"/>
 
                     <h:outputLabel value="Country: "/>
-                    <h:outputLabel value="#{flowScope.country}"/>
+                    <h:outputLabel value="#{orderBean.country}"/>
+                </h:panelGrid>
+                
+                <h:panelGrid columns="2" cellpadding="2" cellspacing="2" rendered="#{null != flowScope.adressLine1Customer?true:false}">
+                    <f:facet name="header">
+                        <h:outputLabel value="Customer Address"/>
+                    </f:facet>
+                    <h:outputLabel value="Address Line 1: "/>
+                    <h:outputLabel value="#{flowScope.adressLine1Customer}"/>
+                    
+                    <h:outputLabel value="Address Line 2: "/>
+                    <h:outputLabel value="#{flowScope.adressLine2Customer}"/>
+                    
+                    <h:outputLabel value="City: "/>
+                    <h:outputLabel value="#{flowScope.cityCustomer}" />
+                    
+                    <h:outputLabel value="State: "/>
+                    <h:outputLabel value="#{flowScope.stateCustomer}"/>
+                    
+                    <h:outputLabel value="Zip/Postcode: "/>
+                    <h:outputLabel value="#{flowScope.postalCodeCustomer}"/>
+                    
+                    <h:outputLabel value="Country: "/>
+                    <h:outputLabel value="#{flowScope.countryCustomer}"/>
+               
                 </h:panelGrid>
                 
             </h:panelGrid>
 
             <h:commandButton value="back" action="orderA" />
+            <h:commandButton action="callCustomer" value="Call Customer Flow"/>
             <h:commandButton action="returnFromOrderFlow" value="Exit Flow"/>
     
         </h:form>

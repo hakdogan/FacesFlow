@@ -17,25 +17,47 @@
         <p>Has a flow: #{null != facesContext.application.flowHandler.currentFlow}.</p>
         
         <h:form prependId="false">
-            <h:panelGrid columns="3" cellpadding="2" cellspacing="2">
+            
+            <h:panelGrid columns="2" cellpadding="2" cellspacing="2" columnClasses="columnVerticalAlign,columnVerticalAlign">
                 
-                <h:outputLabel for="product" value="Product: "/>
-                <h:inputText  id="product" value="#{flowScope.product}" required="true" maxlength="20"/>
-                <h:message for="product"/>
+                <h:panelGrid columns="2" cellpadding="2" cellspacing="2" rendered="#{null != flowScope.firstNameCustomer?true:false}" >
+                    
+                    <f:facet name="header">
+                        <h:outputText value="Customer Information"/>
+                    </f:facet>
+                    
+                    <h:outputLabel value="First Name: "/>
+                    <h:outputLabel value="#{flowScope.firstNameCustomer}"/>
+
+                    <h:outputLabel value="Last Name: "/>
+                    <h:outputLabel value="#{flowScope.lastNameCustomer}"/>
+                    
+                </h:panelGrid>
                 
-                <h:outputLabel for="price" value="Price: "/>
-                <h:inputText id="price" value="#{flowScope.price}" required="true">
-                    <f:convertNumber pattern="#,##0.00"/>
-                </h:inputText>
-                <h:message for="price"/>
-                
-                <h:outputLabel/>
-                <h:panelGroup>
-                    <h:commandButton value="next" action="orderA" />
-                    <h:commandButton immediate="true" action="returnFromOrderFlow" value="Exit Flow"/>
-                </h:panelGroup>
-                
+                <h:panelGrid columns="3" cellpadding="2" cellspacing="2">
+
+                    <f:facet name="header">
+                        <h:outputText value="Order Information"/>
+                    </f:facet>
+                    
+                    <h:outputLabel for="product" value="Product: "/>
+                    <h:inputText  id="product" value="#{orderBean.product}" required="true" maxlength="20"/>
+                    <h:message for="product"/>
+
+                    <h:outputLabel for="price" value="Price: "/>
+                    <h:inputText id="price" value="#{orderBean.price}" required="true">
+                        <f:convertNumber pattern="#,##0.00"/>
+                    </h:inputText>
+                    <h:message for="price"/>
+
+                    <h:outputLabel/>
+                    
+                </h:panelGrid>
             </h:panelGrid>
+            
+            <h:commandButton value="next" action="orderA" />
+            <h:commandButton immediate="true" action="returnFromOrderFlow" value="Exit Flow"/>
+            
         </h:form>
     </h:body>
 </html>
