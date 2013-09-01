@@ -9,3 +9,5 @@ Refer to blog post for details:
 <dd>- <a href="http://kodcu.com/2013/07/jsf-2-2-faces-akislarini-kullanin/">JSF 2.2: Faces Akışlarını kullanın</a></dd>
 <dd>- <a href="http://kodcu.com/2013/07/jsf-2-2-akis-cagrilari/">JSF 2.2: Akış Çağrıları</a></dd>
 </dl>‎
+
+<a target='_blank' href='http://imageshack.us/photo/my-images/833/spfm.png/'><img src='http://img833.imageshack.us/img833/9180/spfm.png' border='0'/></a>
